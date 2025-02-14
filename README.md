@@ -76,5 +76,4 @@ Representa una tarea
    Se aplican reglas estrictas para verificar los datos enviados por los clientes, evitando valores inválidos o maliciosos.
 3. Cifrado de contraseñas:
    Las contraseñas se almacenan cifradas.
-4. Roles de usuario:
-   Los usuarios con rol ADMIN tienen permisos adicionales, como gestionar tipos de gastos.
+
