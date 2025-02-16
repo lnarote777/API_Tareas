@@ -41,4 +41,4 @@ out/
 .kotlin
 
 ### variables de entornos ###
-.env.properties
+*.env.properties
