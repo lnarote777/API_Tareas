@@ -64,7 +64,7 @@ Representa una tarea
 | Situación                   | Código | Excepción                |
 |-----------------------------|--------|--------------------------|
 | Usuario no encontrado       | 404    | `UserNotFoundException`  |
-| Tarea no encontrada         | 404    | `GastoNotFoundException` |
+| Tarea no encontrada         | 404    | `TareaNotFoundException` |
 | Datos inválidos             | 400    | `BadRequestException`    |
 | Usuario existente           | 400    | `UserExistException`     |
 | Sin autorización            | 401    | `NotAuthorizedException` |
