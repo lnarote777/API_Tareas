@@ -77,3 +77,62 @@ Representa una tarea
 3. Cifrado de contraseñas:
    Las contraseñas se almacenan cifradas.
 
+# Pruebas Gestion de Usuario
+
+- Login exitoso: Cuando el login sea exitoso pasará a una pantalla completamente en blanco. Para
+este caso usare el usuario prueba1 que ya estaba registrado en la base de datos de Mongo.
+
+![img.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg.png)
+
+![img_2.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg_2.png)
+
+
+- Casos en los que es erróneo el login:
+    
+  - Contraseña incorrecta:
+  
+  ![img_11.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg_11.png)
+
+  - Usuario no encontrado:
+  
+  ![img_12.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg_12.png)
+
+    > 📝 **Nota:** No se comprueba si los campos estan vacíos porque la interfaz está diseñada para que no se pueda pulsar el botón de iniciar sesión hasta que se rellenen los 2 campos.
+  
+    - Campos vacíos: Botón desabilitado.
+  
+  ![img_13.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg_13.png)
+
+- Registro exitoso: Si el registro ha sido exitos pasará a verse la pantalla de login para que el usuario inicie sesión.
+
+![img_1.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg_1.png)
+![img_3.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg_3.png)
+![img_4.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg_4.png)
+
+- Casos en los que el registro da error:
+  - Campo vacío: Se deja cualquier campo vacío. Se muestra el mensaje de error.
+  
+  ![img_5.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg_5.png)
+
+  - Email mal escrito: Se introduce un formato de email inválido y se muestra un mensaje de error.
+  
+  ![img_6.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg_6.png)
+
+  - Usuario existente: El email introducido ya existe en la base de datos por lo que el usuario ya existe.
+  
+  ![img_7.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg_7.png)
+
+  - Contraseñas no coinciden: La contraseña y la confirmación de ésta no coinciden.
+  
+  ![img_8.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg_8.png)
+
+  - Provincia no existente:
+  
+![img_9.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg_9.png)
+  - Municipio no existente en la provincia seleccionada:
+  ![img_10.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg_10.png)
+
+
+
+
+
