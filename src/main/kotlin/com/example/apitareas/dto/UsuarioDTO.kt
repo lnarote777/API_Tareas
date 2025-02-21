@@ -5,4 +5,4 @@ data class UsuarioDTO(
     val nombre: String,
     val email: String?,
     val rol: String?
-){}
+)
