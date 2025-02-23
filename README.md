@@ -8,13 +8,13 @@ Guardará la información relacionada con un usuario que servirá a su vez para 
 
 - Estructura
 
-| Campo     | Tipo      | Descripción                                    |
-|-----------|-----------|------------------------------------------------|
-| username  | `String`   | Nick de usuario                                |
-| email     | `String`   | Email del usuario                              |
-| password  | `String`   | Contraseña del usuario                         |
+| Campo     | Tipo      | Descripción                                  |
+|-----------|-----------|----------------------------------------------|
+| username  | `String`   | Nick de usuario                              |
+| _id       | `String`   | Email del usuario                            |
+| password  | `String`   | Contraseña del usuario                       |
 | roles     | `String`   | Rol del usuario en la aplicación (USER, ADMIN) |
-| direccion | `Direccion` | Direcció del usuario                           |
+| direccion | `Direccion` | Direcció del usuario                         |
 
 - Endpoint
 
@@ -30,26 +30,25 @@ Guardará la información relacionada con un usuario que servirá a su vez para 
 ### Documneto Tarea
 Representa una tarea
 
-| Campo       | Tipo      | Descripción                                |
-|-------------|-----------|--------------------------------------------|
-| _id         | `String`  | Identificador de la tarea                  |
-| nombre      | `String`  | Nombre de la tarea                         |
-| descripcion | `String`  | Descripción de la tarea                    |
-| usuario     | `Usuario` | Usuario que escribió la tarea              |
-| progreso    | `String`  | Progreso de la tarea (TERMINADA/PENDIENTE) |
+| Campo       | Tipo      | Descripción                                 |
+|-------------|-----------|---------------------------------------------|
+| _id         | `Int`     | Identificador de la tarea                   |
+| nombre      | `String`  | Nombre de la tarea                          |
+| descripcion | `String`  | Descripción de la tarea                     |
+| usuario     | `Usuario` | Usuario que escribió la tarea               |
+| progreso    | `String`  | Progreso de la tarea (COMPLETADA/PENDIENTE) |
 
 - Endpoints
 
 
-| Método | Endpoint                  | Descripción                            |
-|--------|---------------------------|----------------------------------------|
-| POST   | /tareas/                  | añade una tarea                        |
-| GET    | /tareas/                  | Obtiene todas las tareas               |
-| GET    | /tareas/{id}              | Obtiene un una tarea po id             |
-| GET    | /tareas/{username}        | Obtiene todas las tareas de un usuario |
-| UPDATE | /tareas/update            | Actualiza una tarea                    |
-| DELETE | /tareas/delete/{id}       | Elimina una tarea                      |
-| DELETE | /tareas/delete/{username} | Elimina una tarea                      |
+| Método | Endpoint                      | Descripción                            |
+|--------|-------------------------------|----------------------------------------|
+| POST   | /tareas/crear                 | añade una tarea                        |
+| GET    | /tareas/todas                 | Obtiene todas las tareas               |
+| GET    | /tareas/{id}                  | Obtiene un una tarea po id             |
+| GET    | /tareas/mis-tareas/{username} | Obtiene todas las tareas de un usuario |
+| UPDATE | /tareas/update                | Actualiza una tarea                    |
+| DELETE | /tareas/delete/{id}           | Elimina una tarea                      |
 
 ## Lógca de Negocio
 1. Gestión de usuarios

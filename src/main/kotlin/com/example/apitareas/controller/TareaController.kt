@@ -35,7 +35,7 @@ class TareaController {
         val usernameActual = httpRequest.userPrincipal.name
         val usuario = usuarioService.getUserByUsername(usernameActual)
 
-        if (usernameActual != tareaDTO.username || usuario.roles != "ADMIN" ) {
+        if (usernameActual != tareaDTO.username && usuario.roles != "ADMIN" ) {
             throw UnauthorizedException("No tiene permiso para añadirle una tarea a otro usuario")
         }
 
