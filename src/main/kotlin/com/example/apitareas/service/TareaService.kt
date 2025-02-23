@@ -31,7 +31,7 @@ class TareaService {
 
         val tarea = DTOMapper.tareaDTOToEntity(tareaInsert, usuario)
 
-        return tareaRepository.save(tarea)
+        return tareaRepository.insert(tarea)
     }
 
     fun getTareaByUser(usuario: Usuario): List<Tarea>{
