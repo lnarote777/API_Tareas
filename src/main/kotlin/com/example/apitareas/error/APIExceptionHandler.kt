@@ -42,8 +42,6 @@ class APIExceptionHandler {
     }
 
     @ExceptionHandler(
-        UserNotFoundException::class,
-        TareaNotFoundException::class,
         NotFoundException::class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody

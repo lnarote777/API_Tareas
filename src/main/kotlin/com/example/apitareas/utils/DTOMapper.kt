@@ -1,8 +1,10 @@
 package com.example.apitareas.utils
 
+import com.example.apitareas.dto.TareaDTO
 import com.example.apitareas.dto.UsuarioDTO
 import com.example.apitareas.dto.UsuarioInsertDTO
 import com.example.apitareas.model.Direccion
+import com.example.apitareas.model.Tarea
 import com.example.apitareas.model.Usuario
 
 object DTOMapper {
@@ -33,5 +35,15 @@ object DTOMapper {
             rol = usuario.roles
         )
 
+    }
+
+    fun tareaDTOToEntity(tareaDTO: TareaDTO, usuario: Usuario): Tarea{
+        return Tarea(
+            _id = null,
+            titulo = tareaDTO.titulo,
+            descripcion = tareaDTO.descripcion,
+            estado = "PENDIENTE",
+            usuario = usuario
+        )
     }
 }

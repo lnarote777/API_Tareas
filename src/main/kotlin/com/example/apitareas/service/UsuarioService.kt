@@ -67,6 +67,12 @@ class UsuarioService: UserDetailsService {
         }
     }
 
+    fun getUserByUsername(username: String):Usuario{
+        return usuarioRepository.findByUsername(username).orElseThrow {
+            NotFoundException("Usuario $username no encontrado.")
+        }
+    }
+
     fun deleteUsuario(email: String): Usuario {
         val user = usuarioRepository.findUserBy_id(email).orElseThrow {
             NotFoundException("Usuario con email $email no encontrado.")

@@ -9,6 +9,7 @@ import com.nimbusds.jose.proc.SecurityContext
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.config.Customizer
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration
@@ -36,7 +37,20 @@ class SecurityConfig {
         return http
             .csrf { csrf -> csrf.disable() } // Cross-Site Forgery
             .authorizeHttpRequests { auth -> auth
-                .anyRequest().permitAll()
+                .requestMatchers("/usuarios/register", "/usuarios/login").permitAll() // Público
+                // Acceso para USER
+                .requestMatchers(HttpMethod.GET,"/tareas/mis-tareas").hasRole("USER")
+                .requestMatchers(HttpMethod.POST,"/tareas/crear").hasRole("USER")
+                .requestMatchers(HttpMethod.PUT,"/tareas/update").hasRole("USER")
+                .requestMatchers(HttpMethod.DELETE,"/tareas/delete/{id}").hasRole("USER")
+                // Acceso para ADMIN
+                .requestMatchers(HttpMethod.GET,"/tareas/todas").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST,"/tareas/crear").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE,"/tareas/delete/{id}").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE,"/usuarios/delete/{email}").hasRole("ADMIN")
+
+                //Otros
+                .anyRequest().authenticated()
             } // Los recursos protegidos y publicos
             .oauth2ResourceServer { oauth2 -> oauth2.jwt(Customizer.withDefaults()) }
             .sessionManagement { session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
