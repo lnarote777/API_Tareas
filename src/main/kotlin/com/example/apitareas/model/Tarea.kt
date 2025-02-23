@@ -12,8 +12,8 @@ data class Tarea(
     var estado: String, // TERMINADA/PENDIENTE
     val usuario: Usuario
 ){
-    private var cont = 0
     init {
+        var cont = 0
         _id = ++cont
     }
 }
