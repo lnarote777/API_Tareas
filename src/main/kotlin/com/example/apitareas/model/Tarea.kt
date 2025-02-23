@@ -12,8 +12,10 @@ data class Tarea(
     var estado: String, // TERMINADA/PENDIENTE
     val usuario: Usuario
 ){
+    companion object {
+        private var cont = 0  // El contador es compartido por todas las instancias
+    }
     init {
-        var cont = 0
         _id = ++cont
     }
 }
