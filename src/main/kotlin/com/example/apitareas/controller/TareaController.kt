@@ -32,6 +32,13 @@ class TareaController {
         if (tareaDTO == null) {
             throw BadRequestException("Debe introducir los campos de la tarea")
         }
+        val usernameActual = httpRequest.userPrincipal.name
+        val usuario = usuarioService.getUserByUsername(usernameActual)
+
+        if (usernameActual != tareaDTO.username || usuario.roles != "ADMIN" ) {
+            throw UnauthorizedException("No tiene permiso para añadirle una tarea a otro usuario")
+        }
+
         val tarea = tareaService.insert(tareaDTO)
         return ResponseEntity(tarea, HttpStatus.OK)
     }
@@ -67,9 +74,16 @@ class TareaController {
         @PathVariable id: Int
     ): ResponseEntity<Tarea> {
 
+        val usernameActual = httpRequest.userPrincipal.name
+        val tareaUpdate = tareaService.getTarea(id)
+
+        if (usernameActual != tareaUpdate.usuario.username ) {
+            throw UnauthorizedException("No tiene permiso para añadirle una tarea a otro usuario")
+        }
+
         val tarea = tareaService.update(id)
 
-        return ResponseEntity(HttpStatus.OK)
+        return ResponseEntity(tarea, HttpStatus.OK)
     }
 
     @PreAuthorize("hasRole('ADMIN') or #username == authentication.name")
@@ -77,7 +91,7 @@ class TareaController {
     fun delete(
         @PathVariable id: Int,
         httpRequest: HttpServletRequest
-    ): ResponseEntity<Any> {
+    ): ResponseEntity<Tarea> {
 
         val username = httpRequest.userPrincipal.name
         val tarea = tareaService.getTarea(id)
