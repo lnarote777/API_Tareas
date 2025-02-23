@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document
 @Document("Tareas")
 data class Tarea(
     @BsonId
-    var _id: Int?,
+    var _id: Int? = null,
     val titulo: String,
     val descripcion: String,
     var estado: String, // TERMINADA/PENDIENTE
