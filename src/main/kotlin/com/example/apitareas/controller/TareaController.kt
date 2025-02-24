@@ -60,6 +60,12 @@ class TareaController {
         if (username == null || username == "") {
             throw BadRequestException("Introduzca su nombre de usuario")
         }
+        val userActual = httpRequest.userPrincipal.name
+
+        if (userActual != username){
+            throw UnauthorizedException("No tiene permiso para añadirle una tarea a otro usuario")
+        }
+
         val usuario = usuarioService.getUserByUsername(username)
 
         val tareas = tareaService.getTareaByUser(usuario)
@@ -67,21 +73,26 @@ class TareaController {
         return ResponseEntity(tareas, HttpStatus.OK)
     }
 
-    @PreAuthorize("hasRole('USER') and #tareaDTO.username == authentication.name")
+    @PreAuthorize("hasRole('USER') and #tareaUpdate.username == authentication.name")
     @PutMapping("/update/{id}")
     fun update(
         httpRequest: HttpServletRequest,
-        @PathVariable id: Int
+        @PathVariable id:  String
     ): ResponseEntity<Tarea> {
+        val idInt = try {
+            id.toInt()
+        }catch (e: Exception){
+            throw BadRequestException("Inserte un id válido")
+        }
 
         val usernameActual = httpRequest.userPrincipal.name
-        val tareaUpdate = tareaService.getTarea(id)
+        val tareaUpdate = tareaService.getTarea(idInt)
 
         if (usernameActual != tareaUpdate.usuario.username ) {
             throw UnauthorizedException("No tiene permiso para añadirle una tarea a otro usuario")
         }
 
-        val tarea = tareaService.update(id)
+        val tarea = tareaService.update(idInt)
 
         return ResponseEntity(tarea, HttpStatus.OK)
     }
@@ -89,17 +100,23 @@ class TareaController {
     @PreAuthorize("hasRole('ADMIN') or #username == authentication.name")
     @DeleteMapping("/delete/{id}")
     fun delete(
-        @PathVariable id: Int,
+        @PathVariable id: String,
         httpRequest: HttpServletRequest
     ): ResponseEntity<Tarea> {
 
+        val idInt = try {
+            id.toInt()
+        }catch (e: Exception){
+            throw BadRequestException("Inserte un id válido")
+        }
+
         val username = httpRequest.userPrincipal.name
-        val tarea = tareaService.getTarea(id)
+        val tarea = tareaService.getTarea(idInt)
 
         val usuario = usuarioService.getUserByUsername(username)
 
         if (usuario.roles == "ADMIN" || username == tarea.usuario.username) {
-            val delete = tareaService.delete(id)
+            val delete = tareaService.delete(idInt)
             return ResponseEntity(delete, HttpStatus.OK)
         }else{
             throw UnauthorizedException("El usuario $username no tiene permiso para eliminar la tarea del usuario ${tarea.usuario.username}")

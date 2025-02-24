@@ -45,7 +45,6 @@ Representa una tarea
 |--------|-------------------------------|----------------------------------------|
 | POST   | /tareas/crear                 | añade una tarea                        |
 | GET    | /tareas/todas                 | Obtiene todas las tareas               |
-| GET    | /tareas/{id}                  | Obtiene un una tarea po id             |
 | GET    | /tareas/mis-tareas/{username} | Obtiene todas las tareas de un usuario |
 | UPDATE | /tareas/update                | Actualiza una tarea                    |
 | DELETE | /tareas/delete/{id}           | Elimina una tarea                      |
@@ -60,13 +59,12 @@ Representa una tarea
 
 ## Excepciones
 
-| Situación                   | Código | Excepción                |
-|-----------------------------|--------|--------------------------|
-| Usuario no encontrado       | 404    | `UserNotFoundException`  |
-| Tarea no encontrada         | 404    | `TareaNotFoundException` |
-| Datos inválidos             | 400    | `BadRequestException`    |
-| Usuario existente           | 400    | `UserExistException`     |
-| Sin autorización            | 401    | `NotAuthorizedException` |
+| Situación            | Código | Excepción            |
+|----------------------|--------|----------------------|
+| Datos no encontrados | 404    | `NotFoundException`  |
+| Datos inválidos      | 400    | `BadRequestException` |
+| Usuario existente    | 400    | `UserExistException` |
+| Sin autorización     | 401    | `NotAuthorizedException` |
 
 ## Restricciones de seguridad
 1. Autenticación obligatoria:
