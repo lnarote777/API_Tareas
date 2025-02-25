@@ -43,36 +43,20 @@ class TareaController {
         return ResponseEntity(tarea, HttpStatus.OK)
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/todas")
-    fun getAll(httpRequest: HttpServletRequest): ResponseEntity<List<Tarea>> {
-        val tareas = tareaService.getAll()
-        return ResponseEntity(tareas, HttpStatus.OK)
-    }
-
-
     @PreAuthorize("hasRole('ADMIN') or #username == authentication.name")
-    @GetMapping("/mis-tareas/{username}")
-    fun getTareaByUser(
-        @PathVariable username: String?,
+    @GetMapping("/listado-tareas")
+    fun getTareas(
         httpRequest: HttpServletRequest
     ): ResponseEntity<List<Tarea>> {
-        if (username == null || username == "") {
-            throw BadRequestException("Introduzca su nombre de usuario")
-        }
 
         val userActual = httpRequest.userPrincipal.name
-        val usuario = usuarioService.getUserByUsername(username)
+        val usuarioActual = usuarioService.getUserByUsername(userActual)
 
-        if (usuario.roles == "ADMIN"){
+        if (usuarioActual.roles == "ADMIN" ){
             return ResponseEntity(tareaService.getAll(), HttpStatus.OK)
         }
 
-        if (userActual != username){
-            throw UnauthorizedException("No tiene permiso para añadirle una tarea a otro usuario")
-        }
-
-        val tareas = tareaService.getTareaByUser(usuario)
+        val tareas = tareaService.getTareaByUser(usuarioActual)
 
         return ResponseEntity(tareas, HttpStatus.OK)
     }

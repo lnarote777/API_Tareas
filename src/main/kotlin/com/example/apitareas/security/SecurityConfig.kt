@@ -38,13 +38,15 @@ class SecurityConfig {
             .csrf { csrf -> csrf.disable() } // Cross-Site Forgery
             .authorizeHttpRequests { auth -> auth
                 .requestMatchers("/usuarios/register", "/usuarios/login").permitAll() // Público
+                .requestMatchers(HttpMethod.GET,"/tareas/listado-tareas").authenticated()
+                .requestMatchers(HttpMethod.POST,"/tareas/crear").authenticated()
+
                 // Acceso para USER
-                .requestMatchers(HttpMethod.GET,"/tareas/mis-tareas").hasRole("USER")
                 .requestMatchers(HttpMethod.PUT,"/tareas/update").hasRole("USER")
                 .requestMatchers(HttpMethod.DELETE,"/tareas/delete/{id}").hasRole("USER")
+
                 // Acceso para ADMIN
                 .requestMatchers(HttpMethod.GET,"/tareas/todas").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.POST,"/tareas/crear").authenticated()
                 .requestMatchers(HttpMethod.DELETE,"/tareas/delete/{id}").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE,"/usuarios/delete/{email}").hasRole("ADMIN")
 

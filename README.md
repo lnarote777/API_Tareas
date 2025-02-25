@@ -36,18 +36,16 @@ Representa una tarea
 | nombre      | `String`  | Nombre de la tarea                          |
 | descripcion | `String`  | Descripción de la tarea                     |
 | usuario     | `Usuario` | Usuario que escribió la tarea               |
-| progreso    | `String`  | Progreso de la tarea (COMPLETADA/PENDIENTE) |
+| estado      | `String`  | Progreso de la tarea (COMPLETADA/PENDIENTE) |
 
 - Endpoints
 
-
-| Método | Endpoint                      | Descripción                            |
-|--------|-------------------------------|----------------------------------------|
-| POST   | /tareas/crear                 | añade una tarea                        |
-| GET    | /tareas/todas                 | Obtiene todas las tareas               |
-| GET    | /tareas/mis-tareas/{username} | Obtiene todas las tareas de un usuario |
-| UPDATE | /tareas/update                | Actualiza una tarea                    |
-| DELETE | /tareas/delete/{id}           | Elimina una tarea                      |
+| Método | Endpoint                 | Descripción                                                                                   |
+|--------|--------------------------|-----------------------------------------------------------------------------------------------|
+| POST   | /tareas/crear            | Añade una tarea                                                                               |
+| GET    | /tareas/listado-tareas/  | Si el usuario es ADMIN cevuelve todas las tareas, si es USER solo devuelve las tareas de este |
+| UPDATE | /tareas/update           | Actualiza una tarea                                                                           |
+| DELETE | /tareas/delete/{id}      | Elimina una tarea                                                                             |
 
 ## Lógca de Negocio
 1. Gestión de usuarios
