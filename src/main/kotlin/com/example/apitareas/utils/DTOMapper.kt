@@ -5,7 +5,9 @@ import com.example.apitareas.dto.UsuarioDTO
 import com.example.apitareas.dto.UsuarioInsertDTO
 import com.example.apitareas.model.Direccion
 import com.example.apitareas.model.Tarea
+import com.example.apitareas.model.Tarea.Companion.cont
 import com.example.apitareas.model.Usuario
+import java.util.concurrent.atomic.AtomicInteger
 
 object DTOMapper {
 
@@ -39,7 +41,7 @@ object DTOMapper {
 
     fun tareaDTOToEntity(tareaDTO: TareaDTO, usuario: Usuario): Tarea{
         return Tarea(
-            _id = null,
+            _id = cont.getAndIncrement(),
             titulo = tareaDTO.titulo,
             descripcion = tareaDTO.descripcion,
             estado = "PENDIENTE",
