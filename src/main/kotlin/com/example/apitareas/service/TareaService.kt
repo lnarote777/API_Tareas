@@ -66,6 +66,8 @@ class TareaService {
             throw NotFoundException("Tarea no encontrada")
         }
 
+        tarea._id = tareaId
+
         tareaRepository.delete(tarea)
         return tarea
     }
