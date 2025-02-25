@@ -54,6 +54,8 @@ class TareaService {
             throw NotFoundException("Tarea no encontrada")
         }
 
+
+        tarea._id = tareaId
         tarea.estado = "COMPLETADA"
 
         return tareaRepository.save(tarea)
