@@ -138,23 +138,39 @@ este caso usare el usuario prueba1 que ya estaba registrado en la base de datos 
 
 # Pruebas Gestión Tareas
 
-- Creación de tareas:
+#### **- Creación de tareas:**
 
-  - Caso exitoso: Para crear una tarea primero se ha hecho login con una cuenta existente y se ha pasado el token recibido para la autenticación. Hay dos maneras de que se de exitosa la creación de la tarea:
+  - **Caso exitoso**: Para crear una tarea primero se ha hecho login con una cuenta existente y se ha pasado el token recibido para la autenticación. Hay dos maneras de que se de exitosa la creación de la tarea:
   
-    - El usuario es ADMIN por lo que puede añadirle una tarea a cualquier usuario solo poniendo su nombre de usuario en el campo correspondiente: (Usuario usado: admin1 1234)
+    - **El usuario es ADMIN** por lo que puede añadirle una tarea a cualquier usuario solo poniendo su nombre de usuario en el campo correspondiente: (Usuario usado: admin1 1234)
   
-![img.png](src%2Fmain%2Fresources%2Fcapturas%2FpruebasTareas%2Fimg.png)
+    ![img.png](src%2Fmain%2Fresources%2Fcapturas%2FpruebasTareas%2Fimg.png)
 
+    ![img_1.png](src%2Fmain%2Fresources%2Fcapturas%2FpruebasTareas%2Fimg_1.png)
 
-    - El usuario es USER y se está añadiendo la tarea así mismo: (Usuario usado: prueba1 1234)
+    ![img_2.png](src%2Fmain%2Fresources%2Fcapturas%2FpruebasTareas%2Fimg_2.png)
+
+    - El **usuario es USER** y se está añadiendo la tarea así mismo: (Usuario usado: prueba1 1234)
     
+    ![img_3.png](src%2Fmain%2Fresources%2Fcapturas%2FpruebasTareas%2Fimg_3.png)
 
+    ![img_4.png](src%2Fmain%2Fresources%2Fcapturas%2FpruebasTareas%2Fimg_4.png)
 
+  - **Casos con errores**: Para esta comprobación se usará un usuario normal (prueba1 1234) con rol USER para que se puedan apreciar los diferentes casos que se pueden dar. Si fuese un usuario ADMIN solo podrian darse los casos 1 y 2.
 
+    1. No se añade ningun cuerpo a la tarea: 
+  
+    ![img_6.png](src%2Fmain%2Fresources%2Fcapturas%2FpruebasTareas%2Fimg_6.png)
 
+    2. Faltan campos por añadir:
+    
+    ![img_7.png](src%2Fmain%2Fresources%2Fcapturas%2FpruebasTareas%2Fimg_7.png)
 
+    3. El usuario intenta añadirle una tarea a otra persona:
+  
+    ![img_5.png](src%2Fmain%2Fresources%2Fcapturas%2FpruebasTareas%2Fimg_5.png)
 
+ 
 
 
 

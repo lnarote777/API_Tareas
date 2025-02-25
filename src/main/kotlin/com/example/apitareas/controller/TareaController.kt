@@ -51,7 +51,7 @@ class TareaController {
     }
 
 
-    @PreAuthorize("hasRole('USER') and #username == authentication.name")
+    @PreAuthorize("hasRole('ADMIN') or #username == authentication.name")
     @GetMapping("/mis-tareas/{username}")
     fun getTareaByUser(
         @PathVariable username: String?,
@@ -60,13 +60,17 @@ class TareaController {
         if (username == null || username == "") {
             throw BadRequestException("Introduzca su nombre de usuario")
         }
+
         val userActual = httpRequest.userPrincipal.name
+        val usuario = usuarioService.getUserByUsername(username)
+
+        if (usuario.roles == "ADMIN"){
+            return ResponseEntity(tareaService.getAll(), HttpStatus.OK)
+        }
 
         if (userActual != username){
             throw UnauthorizedException("No tiene permiso para añadirle una tarea a otro usuario")
         }
-
-        val usuario = usuarioService.getUserByUsername(username)
 
         val tareas = tareaService.getTareaByUser(usuario)
 
