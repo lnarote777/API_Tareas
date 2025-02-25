@@ -40,12 +40,11 @@ class SecurityConfig {
                 .requestMatchers("/usuarios/register", "/usuarios/login").permitAll() // Público
                 // Acceso para USER
                 .requestMatchers(HttpMethod.GET,"/tareas/mis-tareas").hasRole("USER")
-                .requestMatchers(HttpMethod.POST,"/tareas/crear").hasRole("USER")
                 .requestMatchers(HttpMethod.PUT,"/tareas/update").hasRole("USER")
                 .requestMatchers(HttpMethod.DELETE,"/tareas/delete/{id}").hasRole("USER")
                 // Acceso para ADMIN
                 .requestMatchers(HttpMethod.GET,"/tareas/todas").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.POST,"/tareas/crear").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST,"/tareas/crear").authenticated()
                 .requestMatchers(HttpMethod.DELETE,"/tareas/delete/{id}").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE,"/usuarios/delete/{email}").hasRole("ADMIN")
 

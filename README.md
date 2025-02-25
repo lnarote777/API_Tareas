@@ -79,55 +79,103 @@ Representa una tarea
 - Login exitoso: Cuando el login sea exitoso pasará a una pantalla completamente en blanco. Para
 este caso usare el usuario prueba1 que ya estaba registrado en la base de datos de Mongo.
 
-![img.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg.png)
+![img.png](src%2Fmain%2Fresources%2Fcapturas%2FpruebasUsuarios%2Fimg.png)
 
-![img_2.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg_2.png)
+![img_2.png](src%2Fmain%2Fresources%2Fcapturas%2FpruebasUsuarios%2Fimg_2.png)
 
 
 - Casos en los que es erróneo el login:
     
   - Contraseña incorrecta:
   
-  ![img_11.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg_11.png)
+![img_11.png](src%2Fmain%2Fresources%2Fcapturas%2FpruebasUsuarios%2Fimg_11.png)
 
   - Usuario no encontrado:
   
-  ![img_12.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg_12.png)
+![img_12.png](src%2Fmain%2Fresources%2Fcapturas%2FpruebasUsuarios%2Fimg_12.png)
 
     > 📝 **Nota:** No se comprueba si los campos estan vacíos porque la interfaz está diseñada para que no se pueda pulsar el botón de iniciar sesión hasta que se rellenen los 2 campos.
   
-    - Campos vacíos: Botón desabilitado.
+- Campos vacíos: Botón desabilitado.
   
-  ![img_13.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg_13.png)
+![img_13.png](src%2Fmain%2Fresources%2Fcapturas%2FpruebasUsuarios%2Fimg_13.png)
 
 - Registro exitoso: Si el registro ha sido exitos pasará a verse la pantalla de login para que el usuario inicie sesión.
 
-![img_1.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg_1.png)
-![img_3.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg_3.png)
-![img_4.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg_4.png)
+![img_1.png](src%2Fmain%2Fresources%2Fcapturas%2FpruebasUsuarios%2Fimg_1.png)
+
+![img_3.png](src%2Fmain%2Fresources%2Fcapturas%2FpruebasUsuarios%2Fimg_3.png)
+
+![img_4.png](src%2Fmain%2Fresources%2Fcapturas%2FpruebasUsuarios%2Fimg_4.png)
 
 - Casos en los que el registro da error:
   - Campo vacío: Se deja cualquier campo vacío. Se muestra el mensaje de error.
   
-  ![img_5.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg_5.png)
+  ![img_5.png](src%2Fmain%2Fresources%2Fcapturas%2FpruebasUsuarios%2Fimg_5.png)
+
 
   - Email mal escrito: Se introduce un formato de email inválido y se muestra un mensaje de error.
   
-  ![img_6.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg_6.png)
+ ![img_6.png](src%2Fmain%2Fresources%2Fcapturas%2FpruebasUsuarios%2Fimg_6.png)
 
   - Usuario existente: El email introducido ya existe en la base de datos por lo que el usuario ya existe.
   
-  ![img_7.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg_7.png)
+  ![img_7.png](src%2Fmain%2Fresources%2Fcapturas%2FpruebasUsuarios%2Fimg_7.png)
 
   - Contraseñas no coinciden: La contraseña y la confirmación de ésta no coinciden.
   
-  ![img_8.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg_8.png)
+  ![img_8.png](src%2Fmain%2Fresources%2Fcapturas%2FpruebasUsuarios%2Fimg_8.png)
 
   - Provincia no existente:
   
-![img_9.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg_9.png)
+![img_9.png](src%2Fmain%2Fresources%2Fcapturas%2FpruebasUsuarios%2Fimg_9.png)
+
   - Municipio no existente en la provincia seleccionada:
-  ![img_10.png](src%2Fmain%2Fresources%2Fcapturas%2Fimg_10.png)
+  
+![img_10.png](src%2Fmain%2Fresources%2Fcapturas%2FpruebasUsuarios%2Fimg_10.png)
+
+
+
+# Pruebas Gestión Tareas
+
+- Creación de tareas:
+
+  - Caso exitoso: Para crear una tarea primero se ha hecho login con una cuenta existente y se ha pasado el token recibido para la autenticación. Hay dos maneras de que se de exitosa la creación de la tarea:
+  
+    - El usuario es ADMIN por lo que puede añadirle una tarea a cualquier usuario solo poniendo su nombre de usuario en el campo correspondiente: (Usuario usado: admin1 1234)
+  
+![img.png](src%2Fmain%2Fresources%2Fcapturas%2FpruebasTareas%2Fimg.png)
+
+
+    - El usuario es USER y se está añadiendo la tarea así mismo: (Usuario usado: prueba1 1234)
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
