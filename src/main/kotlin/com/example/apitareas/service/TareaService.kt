@@ -34,7 +34,13 @@ class TareaService {
     }
 
     fun getTareaByUser(usuario: Usuario): List<Tarea>{
-        return tareaRepository.findByUsuario(usuario)
+        val tareas = tareaRepository.findByUsuario(usuario)
+
+        if (tareas.isEmpty()){
+            throw NotFoundException("No se encontró ninguna tarea para el usuario ${usuario.username}")
+        }
+
+        return tareas
     }
 
     fun getTarea(id: Int): Tarea {
@@ -45,7 +51,13 @@ class TareaService {
     }
 
     fun getAll(): List<Tarea>{
-        return tareaRepository.findAll()
+        val tareas = tareaRepository.findAll()
+
+        if (tareas.isEmpty()){
+            throw NotFoundException("No se encontró ninguna tarea.")
+        }
+
+        return tareas
     }
 
     fun update(tareaId: Int): Tarea{
