@@ -65,6 +65,7 @@ class TareaService {
             throw NotFoundException("Tarea no encontrada")
         }
 
+        if (tarea.estado == "COMPLETADA") throw BadRequestException("La tarea ya ha sido completada.")
 
         tarea._id = tareaId
         tarea.estado = "COMPLETADA"
