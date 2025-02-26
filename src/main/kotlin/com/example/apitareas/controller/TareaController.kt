@@ -61,7 +61,7 @@ class TareaController {
         return ResponseEntity(tareas, HttpStatus.OK)
     }
 
-    @PreAuthorize("hasRole('USER') and #tareaUpdate.username == authentication.name")
+    @PreAuthorize("hasRole('ADMIN') or #tareaUpdate.username == authentication.name")
     @PutMapping("/update/{id}")
     fun update(
         httpRequest: HttpServletRequest,
@@ -74,9 +74,10 @@ class TareaController {
         }
 
         val usernameActual = httpRequest.userPrincipal.name
+        val usuario = usuarioService.getUserByUsername(usernameActual)
         val tareaUpdate = tareaService.getTarea(idInt)
 
-        if (usernameActual != tareaUpdate.usuario.username ) {
+        if (usernameActual != tareaUpdate.usuario.username  && usuario.roles != "ADMIN" ) {
             throw UnauthorizedException("No tiene permiso para añadirle una tarea a otro usuario")
         }
 
