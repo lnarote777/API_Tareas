@@ -140,7 +140,7 @@ Cuando el login sea exitoso pasará a una pantalla completamente en blanco. Para
   
 - Usuario **ADMIN**: Puede añadirle una tarea a cualquier usuario solo poniendo su nombre de usuario en el campo correspondiente: (Usuario usado: admin1 1234)
 
-![img.png](src%2Fmain%2Fresources%2F![img_8.png](img_8.png)capturas%2FpruebasTareas%2Fimg.png)
+![loginAdmin1.png](src%2Fmain%2Fresources%2Fcapturas%2FpruebasTareas%2FloginAdmin1.png)
 
 ![img_1.png](src%2Fmain%2Fresources%2Fcapturas%2FpruebasTareas%2Fimg_1.png)
 

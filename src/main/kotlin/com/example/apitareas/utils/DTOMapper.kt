@@ -48,4 +48,14 @@ object DTOMapper {
             usuario = usuario
         )
     }
+
+    fun tareaEntityToDTO(tareaEntity: Tarea): TareaDTO {
+        return TareaDTO(
+            id = tareaEntity._id,
+            titulo = tareaEntity.titulo,
+            descripcion = tareaEntity.descripcion,
+            username = tareaEntity.usuario.username,
+            estado = tareaEntity.estado
+        )
+    }
 }

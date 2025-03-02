@@ -20,7 +20,7 @@ class TareaService {
     @Autowired
     private lateinit var userService: UsuarioService
 
-    fun insert(tareaInsert: TareaDTO): Tarea{
+    fun insert(tareaInsert: TareaDTO): TareaDTO{
         if (tareaInsert.titulo.isBlank()
             || tareaInsert.descripcion.isBlank()
             || tareaInsert.username.isBlank()){
@@ -30,14 +30,25 @@ class TareaService {
         val usuario = userService.getUserByUsername(tareaInsert.username)
 
         val tarea = DTOMapper.tareaDTOToEntity(tareaInsert, usuario)
-        return tareaRepository.insert(tarea)
+
+        val tareaSaved = tareaRepository.insert(tarea)
+
+        val tareaDTO = DTOMapper.tareaEntityToDTO(tareaSaved)
+
+        return tareaDTO
     }
 
-    fun getTareaByUser(usuario: Usuario): List<Tarea>{
-        val tareas = tareaRepository.findByUsuario(usuario)
+    fun getTareaByUser(usuario: Usuario): List<TareaDTO>{
+        val tareasRepo = tareaRepository.findByUsuario(usuario)
 
-        if (tareas.isEmpty()){
+        if (tareasRepo.isEmpty()){
             throw NotFoundException("No se encontró ninguna tarea para el usuario ${usuario.username}")
+        }
+        val tareas = mutableListOf<TareaDTO>()
+
+        tareasRepo.forEach {
+            val tarea = DTOMapper.tareaEntityToDTO(it)
+            tareas.add(tarea)
         }
 
         return tareas
@@ -50,17 +61,24 @@ class TareaService {
             }
     }
 
-    fun getAll(): List<Tarea>{
-        val tareas = tareaRepository.findAll()
+    fun getAll(): List<TareaDTO>{
+        val tareasRepo = tareaRepository.findAll()
 
-        if (tareas.isEmpty()){
+        if (tareasRepo.isEmpty()){
             throw NotFoundException("No se encontró ninguna tarea.")
+        }
+
+        val tareas = mutableListOf<TareaDTO>()
+
+        tareasRepo.forEach {
+            val tarea = DTOMapper.tareaEntityToDTO(it)
+            tareas.add(tarea)
         }
 
         return tareas
     }
 
-    fun update(tareaId: Int): Tarea{
+    fun update(tareaId: Int): TareaDTO{
         val tarea = tareaRepository.findById(tareaId).orElseThrow{
             throw NotFoundException("Tarea no encontrada")
         }
@@ -70,10 +88,12 @@ class TareaService {
         tarea._id = tareaId
         tarea.estado = "COMPLETADA"
 
-        return tareaRepository.save(tarea)
+        val tareaSaved = tareaRepository.save(tarea)
+
+        return DTOMapper.tareaEntityToDTO(tareaSaved)
     }
 
-    fun delete(tareaId: Int):Tarea{
+    fun delete(tareaId: Int):TareaDTO{
         val tarea = tareaRepository.findById(tareaId).orElseThrow{
             throw NotFoundException("Tarea no encontrada")
         }
@@ -81,6 +101,6 @@ class TareaService {
         tarea._id = tareaId
 
         tareaRepository.delete(tarea)
-        return tarea
+        return DTOMapper.tareaEntityToDTO(tarea)
     }
 }

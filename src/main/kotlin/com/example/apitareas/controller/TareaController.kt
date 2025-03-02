@@ -28,7 +28,7 @@ class TareaController {
     fun insert(
         @RequestBody tareaDTO: TareaDTO?,
         httpRequest: HttpServletRequest
-    ): ResponseEntity<Tarea> {
+    ): ResponseEntity<TareaDTO> {
         if (tareaDTO == null) {
             throw BadRequestException("Debe introducir los campos de la tarea")
         }
@@ -47,7 +47,7 @@ class TareaController {
     @GetMapping("/listado-tareas")
     fun getTareas(
         httpRequest: HttpServletRequest
-    ): ResponseEntity<List<Tarea>> {
+    ): ResponseEntity<List<TareaDTO>> {
 
         val userActual = httpRequest.userPrincipal.name
         val usuarioActual = usuarioService.getUserByUsername(userActual)
@@ -66,7 +66,7 @@ class TareaController {
     fun update(
         httpRequest: HttpServletRequest,
         @PathVariable id:  String
-    ): ResponseEntity<Tarea> {
+    ): ResponseEntity<TareaDTO> {
         val idInt = try {
             id.toInt()
         }catch (e: Exception){
@@ -91,7 +91,7 @@ class TareaController {
     fun delete(
         @PathVariable id: String,
         httpRequest: HttpServletRequest
-    ): ResponseEntity<Tarea> {
+    ): ResponseEntity<TareaDTO> {
 
         val idInt = try {
             id.toInt()
