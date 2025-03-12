@@ -73,6 +73,17 @@ class UsuarioService: UserDetailsService {
         }
     }
 
+    fun getAll(): List<UsuarioDTO> {
+        val usuarios = usuarioRepository.findAll()
+        val usuariosDTO = mutableListOf<UsuarioDTO>()
+        usuarios.forEach { usuario ->
+            val usuarioDTO = DTOMapper.userEntityToDTO(usuario)
+            usuariosDTO.add(usuarioDTO)
+        }
+
+        return usuariosDTO
+    }
+
     fun deleteUsuario(email: String): Usuario {
         val user = usuarioRepository.findUserBy_id(email).orElseThrow {
             NotFoundException("Usuario con email $email no encontrado.")

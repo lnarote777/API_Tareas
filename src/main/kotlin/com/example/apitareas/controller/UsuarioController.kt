@@ -60,6 +60,14 @@ class UsuarioController {
         return ResponseEntity(mapOf("token" to token), HttpStatus.OK)
     }
 
+    @GetMapping("/lista-usuarios")
+    fun getAllUsers(
+        httpRequest: HttpServletRequest
+    ): ResponseEntity<List<UsuarioDTO>> {
+        val usuarios = usuarioService.getAll()
+        return ResponseEntity(usuarios, HttpStatus.OK)
+    }
+
     @DeleteMapping("/delete/{email}")
     fun deleteByEmail(
         @PathVariable email: String,
