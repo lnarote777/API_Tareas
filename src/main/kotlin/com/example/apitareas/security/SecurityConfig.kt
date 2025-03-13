@@ -38,7 +38,7 @@ class SecurityConfig {
             .csrf { csrf -> csrf.disable() } // Cross-Site Forgery
             .authorizeHttpRequests { auth -> auth
                 .requestMatchers("/usuarios/register", "/usuarios/login").permitAll() // Público
-
+                .requestMatchers(HttpMethod.GET,"/tareas/listado-tareas").permitAll()
                 //Debe autenticarse y luego se comprueba depende del roll
                 .requestMatchers(HttpMethod.GET,"/tareas/listado-tareas").authenticated()
                 .requestMatchers(HttpMethod.POST,"/tareas/crear").authenticated()
